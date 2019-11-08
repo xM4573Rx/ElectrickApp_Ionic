@@ -1,0 +1,33 @@
+ion-content {
+    --offset-top: 0px;
+    --offset-bottom: 0px;
+    --color: #000;
+    .container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        // align-items: center;
+        height: 100%;
+        padding: 3% 0;
+        font-size: 6vw;
+        .header {
+            // flex: 1.5;
+            // justify-content: center;
+            // text-align: center;
+            padding-top: 1%;
+            padding-right: 5%;
+            // font-size: 8vw;
+        }
+        .body {
+            flex: 1;
+            // display: flex;
+            text-align: center;
+            // margin-top: 20%;
+            // font-size: 7vw;
+            // padding-bottom: 30%;
+        }
+        .footer {
+            display: flex;
+        }
+    }
+}

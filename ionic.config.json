@@ -1,0 +1,7 @@
+{
+  "name": "ElectrickApp",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}
