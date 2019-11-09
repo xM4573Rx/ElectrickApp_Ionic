@@ -1,10 +1,10 @@
 <ion-header>
   <ion-toolbar color="primary">
-      <ion-buttons slot="primary">
-        <ion-button>
-        
-        </ion-button>
-      </ion-buttons>
+    <ion-buttons slot="primary">
+      <ion-button>
+
+      </ion-button>
+    </ion-buttons>
     <ion-title>
       ElectrickApp
     </ion-title>
@@ -12,22 +12,79 @@
 </ion-header>
 
 <ion-content>
-  
+
+
+
+  <div class="container">
+    <div class="header">
+      <ion-grid>
+        <ion-row>
+          <ion-col style="text-align: right">
+            100 kWh
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+    <div class="body">
+      <ion-grid>
+        <ion-row>
+          <ion-col style="margin-top: 17%">
+            <circle-progress [percent]="25" [radius]="100" [outerStrokeWidth]="15" [innerStrokeWidth]="15"
+              [outerStrokeColor]="'#4caf50'" [innerStrokeColor]="'#e0e0e0'" [outerStrokeGradient]="false"
+              [outerStrokeGradientStopColor]="'#f44336'" [titleFontSize]="'4vw'" [title]="'50'" [showTitle]="false"
+              [subtitleFontSize]="'2vw'" [subtitle]="'kWh'" [showSubtitle]="false" [showUnits]="false"
+              [showImage]="false" [space]="-15" [renderOnClick]="false" [responsive]="true">
+            </circle-progress>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+
+<div>
+    <ion-grid vertical="bottom" slot="fixed">
+      <ion-row>
+        <ion-col width-50 style="text-align: center">
+          0 kWh
+        </ion-col>
+        <ion-col width-50 style="text-align: center">
+          0 $
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col width-50 style="text-align: center">
+          Consumo total
+        </ion-col>
+        <ion-col width-50 style="text-align: center">
+          Costo total
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+
+    <div class="footer">
+    </div>
+  </div>
+
+
+
+<ion-slides pager="true">
+  <ion-slide style="background-color: red;">
+    
   
 
-      <div class="container">
-        <div class="header">
-          <ion-grid>
-            <ion-row>
-              <ion-col style="text-align: right">
-                100 kWh
-              </ion-col>
-            </ion-row>
-          </ion-grid>
-        </div>
-        <div class="body">
-          <ion-grid>
-            <ion-row>
+
+    
+
+    
+
+    <ion-grid vertical="bottom" slot="fixed" style="font-size: 6vw; padding: 3% 0;">
+        <ion-row style="padding-top: 1%; padding-right: 5%;">
+            <ion-col style="text-align: right">
+              100 kWh
+            </ion-col>
+          </ion-row>
+
+          <ion-row>
               <ion-col style="margin-top: 17%">
                 <circle-progress [percent]="25" [radius]="100" [outerStrokeWidth]="15" [innerStrokeWidth]="15"
                   [outerStrokeColor]="'#4caf50'" [innerStrokeColor]="'#e0e0e0'" [outerStrokeGradient]="false"
@@ -36,68 +93,26 @@
                   [showImage]="false" [space]="-15" [renderOnClick]="false" [responsive]="true">
                 </circle-progress>
               </ion-col>
-            </ion-row>
-          </ion-grid>
-        </div>
+          </ion-row>
 
-    
-          <ion-grid vertical="bottom" slot="fixed">
-            <ion-row>
-              <ion-col width-50 style="text-align: center">
-                0 kWh
-              </ion-col>
-              <ion-col width-50 style="text-align: center">
-                0 $
-              </ion-col>
-            </ion-row>
-            <ion-row>
-              <ion-col width-50 style="text-align: center">
-                Consumo total
-              </ion-col>
-              <ion-col width-50 style="text-align: center">
-                Costo total
-              </ion-col>
-            </ion-row>
-          </ion-grid>
-      
+      <ion-row>
+        <ion-col width-50 style="text-align: center">
+          0 kWh
+        </ion-col>
+        <ion-col width-50 style="text-align: center">
+          0 $
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col width-50 style="text-align: center">
+          Consumo total
+        </ion-col>
+        <ion-col width-50 style="text-align: center">
+          Costo total
+        </ion-col>
+      </ion-row>
+    </ion-grid>
 
-        <div class="footer">
-        </div>
-      </div>
-      <ion-slides>
-          <ion-slide style="background-color: red;">
-              <div class="body">
-                  <ion-grid>
-                    <ion-row>
-                      <ion-col style="margin-top: 17%">
-                        <circle-progress [percent]="25" [radius]="100" [outerStrokeWidth]="15" [innerStrokeWidth]="15"
-                          [outerStrokeColor]="'#4caf50'" [innerStrokeColor]="'#e0e0e0'" [outerStrokeGradient]="false"
-                          [outerStrokeGradientStopColor]="'#f44336'" [titleFontSize]="'4vw'" [title]="'50'" [showTitle]="false"
-                          [subtitleFontSize]="'2vw'" [subtitle]="'kWh'" [showSubtitle]="false" [showUnits]="false"
-                          [showImage]="false" [space]="-15" [renderOnClick]="false" [responsive]="true">
-                        </circle-progress>
-                      </ion-col>
-                    </ion-row>
-                  </ion-grid>
-                </div>
-              <ion-grid vertical="bottom" slot="fixed">
-                  <ion-row>
-                    <ion-col width-50 style="text-align: center">
-                      0 kWh
-                    </ion-col>
-                    <ion-col width-50 style="text-align: center">
-                      0 $
-                    </ion-col>
-                  </ion-row>
-                  <ion-row>
-                    <ion-col width-50 style="text-align: center">
-                      Consumo total
-                    </ion-col>
-                    <ion-col width-50 style="text-align: center">
-                      Costo total
-                    </ion-col>
-                  </ion-row>
-                </ion-grid>
-    </ion-slide>
-  </ion-slides>
+  </ion-slide>
+</ion-slides>
 </ion-content>
