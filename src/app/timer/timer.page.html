@@ -1,0 +1,43 @@
+<ion-header>
+    <ion-toolbar color="primary">
+        <ion-buttons slot="start">
+            <ion-back-button defaultHref="/">
+            </ion-back-button>
+        </ion-buttons>
+        <ion-title>ElectrickApp</ion-title>
+      </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-grid no-padding>
+        <ion-row>
+          <ion-col no-padding>
+        <ion-list no-padding no-margin>
+            <ion-item  style="font-size: 6vw;">
+              <ion-icon name="logo-android" slot="start" size="large"></ion-icon>
+              <ion-progress-bar value="0.5"></ion-progress-bar>
+              <ion-toggle slot="end"></ion-toggle>
+            </ion-item>
+          </ion-list>
+        </ion-col>
+      </ion-row>
+    
+      <ion-row>
+        <ion-col no-padding>
+          <ion-item no-padding style="font-size: 6vw;">
+      <ion-label class="ion-padding-start">Hora de apagado</ion-label>
+      <ion-datetime displayFormat="h:mm a"></ion-datetime>
+    </ion-item>
+    </ion-col>
+    </ion-row>
+    
+    <ion-row>
+    <ion-col no-padding>
+    <ion-item no-padding style="font-size: 6vw;">
+      <ion-label class="ion-padding-start">Hora de encendido</ion-label>
+      <ion-datetime displayFormat="h:mm a"></ion-datetime>
+    </ion-item>
+    </ion-col>
+    </ion-row>
+    </ion-grid>
+</ion-content>
