@@ -32,7 +32,7 @@ export class HomePage {
       this.Denergy = snap.child('Device').val().Energy;
       this.Cenergy = (parseFloat(this.Aenergy) * 422.3);
       this.Tcenergy = this.Cenergy.toFixed(2).toString() + ' $';
-      // console.log(variable);
+      console.log(snap.ref.parent.key.toString());
       /*this.users = this.users + variable + '/';
       this.refe = firebase.database().ref(this.users);
       this.refe.on('child_changed', snap2 => {
@@ -41,7 +41,6 @@ export class HomePage {
       });*/
       // console.log(this.ref);
     });
-    console.log(this.offDate);
   }
 
   openTimerPage() {
