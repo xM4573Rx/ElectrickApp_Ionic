@@ -30,7 +30,6 @@ export class HomePage {
       this.Aenergy = snap.child('All').val().Energy + ' kWh';
       this.Apower = snap.child('All').val().Power + ' kWh';
       this.Denergy = snap.child('Device').val().Energy;
-      console.log(this.Denergy);
       this.Cenergy = (parseFloat(this.Aenergy) * 422.3);
       this.Tcenergy = this.Cenergy.toFixed(2).toString() + ' $';
       // console.log(variable);
@@ -45,14 +44,7 @@ export class HomePage {
     console.log(this.offDate);
   }
 
-  openTimerPage(item) {
+  openTimerPage() {
     this.navCtrl.navigateForward('/timer');
-  }
-
-  addItem(item) {
-    if (item !== undefined && item != null) {
-      this.refe.child('All').child('Energy').push().set(item);
-      this.inputText = '';
-    }
   }
 }

@@ -14,21 +14,14 @@ export class TimerPage implements OnInit {
   offDate: any = '';
   refe = firebase.database().ref(this.users);
 
-  constructor() {
+  constructor() { }
 
-    if (this.offDate !== undefined && this.offDate != null) {
-      this.refe.child('Device').child('Off').push().set({Off: this.offDate});
-    }
-    console.log(this.offDate);
-  }
+  ngOnInit() { }
 
-  ngOnInit() {
-    console.log(this.offDate);
-  }
-
-  addItem(item) {
-    if (item !== undefined && item != null) {
-      this.refe.child('All').child('Energy').set(item);
+  addItem(item1, item2) {
+    if (item1 !== undefined && item1 != null && item2 !== undefined && item2 != null) {
+      this.refe.child('Device').child('Off').set(item1);
+      this.refe.child('Device').child('On').set(item2);
     }
   }
 }

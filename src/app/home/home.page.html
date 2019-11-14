@@ -50,7 +50,7 @@
       </ion-grid>
     </ion-slide>
 
-    <ion-slide>
+    <ion-slide style="overflow-y: scroll;">
       <ion-grid class="container">
         <ion-row class="header">
           <ion-col style="text-align: right">
@@ -72,19 +72,63 @@
         </ion-row>
 
         <ion-row class="footer">
-          <ion-col width-50 style="text-align: center">
-            0 kWh
-          </ion-col>
-          <ion-col width-50 style="text-align: center">
-            0 $
-          </ion-col>
-        </ion-row>
-        <ion-row style="margin-bottom: 4%">
-          <ion-col width-50 style="text-align: center">
-            Consumo total
-          </ion-col>
-          <ion-col width-50 style="text-align: center">
-            Costo total
+          <ion-col style="text-align: center">
+            <ion-list class="ion-no-padding; body;">
+              <ion-item>
+                <ion-icon name="logo-apple" slot="start" size="large" (click)="openTimerPage()"></ion-icon>
+                <ion-progress-bar value="0.5" (click)="openTimerPage()"></ion-progress-bar>
+                <ion-toggle slot="end"></ion-toggle>
+              </ion-item>
+              <ion-item>
+                <ion-icon name="logo-apple" slot="start" size="large" (click)="openTimerPage()"></ion-icon>
+                <ion-progress-bar value="0.5" (click)="openTimerPage()"></ion-progress-bar>
+                <ion-toggle slot="end"></ion-toggle>
+              </ion-item>
+              <ion-item>
+                <ion-icon name="logo-apple" slot="start" size="large" (click)="openTimerPage()"></ion-icon>
+                <ion-progress-bar value="0.5" (click)="openTimerPage()"></ion-progress-bar>
+                <ion-toggle slot="end"></ion-toggle>
+              </ion-item>
+              <ion-item>
+                <ion-icon name="logo-apple" slot="start" size="large" (click)="openTimerPage()"></ion-icon>
+                <ion-progress-bar value="0.5" (click)="openTimerPage()"></ion-progress-bar>
+                <ion-toggle slot="end"></ion-toggle>
+              </ion-item>
+              <ion-item>
+                <ion-icon name="logo-apple" slot="start" size="large" (click)="openTimerPage()"></ion-icon>
+                <ion-progress-bar value="0.5" (click)="openTimerPage()"></ion-progress-bar>
+                <ion-toggle slot="end"></ion-toggle>
+              </ion-item><ion-item>
+                <ion-icon name="logo-apple" slot="start" size="large" (click)="openTimerPage()"></ion-icon>
+                <ion-progress-bar value="0.5" (click)="openTimerPage()"></ion-progress-bar>
+                <ion-toggle slot="end"></ion-toggle>
+              </ion-item>
+              <ion-item>
+                <ion-icon name="logo-apple" slot="start" size="large" (click)="openTimerPage()"></ion-icon>
+                <ion-progress-bar value="0.5" (click)="openTimerPage()"></ion-progress-bar>
+                <ion-toggle slot="end"></ion-toggle>
+              </ion-item>
+              <ion-item>
+                <ion-icon name="logo-apple" slot="start" size="large" (click)="openTimerPage()"></ion-icon>
+                <ion-progress-bar value="0.5" (click)="openTimerPage()"></ion-progress-bar>
+                <ion-toggle slot="end"></ion-toggle>
+              </ion-item>
+              <ion-item>
+                <ion-icon name="logo-apple" slot="start" size="large" (click)="openTimerPage()"></ion-icon>
+                <ion-progress-bar value="0.5" (click)="openTimerPage()"></ion-progress-bar>
+                <ion-toggle slot="end"></ion-toggle>
+              </ion-item>
+              <ion-item>
+                <ion-icon name="logo-apple" slot="start" size="large" (click)="openTimerPage()"></ion-icon>
+                <ion-progress-bar value="0.5" (click)="openTimerPage()"></ion-progress-bar>
+                <ion-toggle slot="end"></ion-toggle>
+              </ion-item>
+              <ion-item>
+                <ion-icon name="logo-apple" slot="start" size="large" (click)="openTimerPage()"></ion-icon>
+                <ion-progress-bar value="0.5" (click)="openTimerPage()"></ion-progress-bar>
+                <ion-toggle slot="end"></ion-toggle>
+              </ion-item>
+            </ion-list>
           </ion-col>
         </ion-row>
       </ion-grid>
@@ -106,11 +150,6 @@
         <ion-row style="margin-bottom: 4%">
           <ion-col>
             <ion-list class="ion-no-padding; body;">
-              <ion-item>
-                <ion-icon name="logo-android" slot="start" size="large" (click)="openTimerPage()"></ion-icon>
-                <ion-progress-bar value="0.5" (click)="openTimerPage()"></ion-progress-bar>
-                <ion-toggle slot="end"></ion-toggle>
-              </ion-item>
               <ion-item>
                 <ion-icon name="logo-apple" slot="start" size="large" (click)="openTimerPage()"></ion-icon>
                 <ion-progress-bar value="0.5" (click)="openTimerPage()"></ion-progress-bar>
