@@ -3,6 +3,7 @@ import { NavController } from '@ionic/angular';
 import * as firebase from 'firebase';
 import { snapshotToArray } from '../../environments/environment';
 import { TimerPage } from '../timer/timer.page';
+import { utils } from 'protractor';
 
 @Component({
   selector: 'app-home',
@@ -11,39 +12,41 @@ import { TimerPage } from '../timer/timer.page';
 })
 export class HomePage {
 
-  users: string = 'users/+573016683176/';
+  users = 'users/+573016683176/';
 
-  items: string = '';
-  Aenergy: string = '';
-  Apower: string = '';
-  Denergy = [];
-  Cenergy: number = 0.0;
-  Tcenergy: string = '';
+  items = '';
+  Aenergy = '';
+  Apower = '';
+  Denergy = '';
+  Cenergy = 0.0;
+  Tcenergy = '';
+  progress = 0.0;
   refe = firebase.database().ref(this.users);
-  inputText: string = '';
-  offDate: any = '';
+  inputText = '';
+  state: boolean;
 
   constructor(public navCtrl: NavController) {
+    this.refe.on('child_changed', snap => {
+      // console.log(snap.ref.toString() + '/' + snap.val() + '/'); Hasta device con ref y child_changed
+      // console.log(snap.val()); Entrega el paquete de hijos con child_changed
+    });
 
     this.refe.on('value', snap => {
-      // this.items = snapshotToArray(snap);
       this.Aenergy = snap.child('All').val().Energy + ' kWh';
       this.Apower = snap.child('All').val().Power + ' kWh';
       this.Denergy = snap.child('Device').val().Energy;
       this.Cenergy = (parseFloat(this.Aenergy) * 422.3);
       this.Tcenergy = this.Cenergy.toFixed(2).toString() + ' $';
-      console.log(snap.ref.parent.key.toString());
-      /*this.users = this.users + variable + '/';
-      this.refe = firebase.database().ref(this.users);
-      this.refe.on('child_changed', snap2 => {
-        const variable2 = snap2.ref;
-        console.log(variable2.toString());
-      });*/
-      // console.log(this.ref);
+      this.state = snap.child('Device').val().State;
+      this.progress = (parseFloat(this.Denergy) / parseFloat(this.Aenergy));
     });
   }
 
   openTimerPage() {
     this.navCtrl.navigateForward('/timer');
+  }
+
+  change() {
+    this.refe.child('Device').child('State').set(this.state);
   }
 }

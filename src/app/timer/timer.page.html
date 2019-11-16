@@ -14,9 +14,9 @@
           <ion-col class="ion-no-padding">
         <ion-list class="ion-no-padding; ion-no-margin">
             <ion-item  style="font-size: 6vw;">
-              <ion-icon name="logo-android" slot="start" size="large"></ion-icon>
-              <ion-progress-bar value="0.5"></ion-progress-bar>
-              <ion-toggle slot="end"></ion-toggle>
+              <ion-icon name="outlet" slot="start" size="large"></ion-icon>
+              <ion-progress-bar [value]="progress"></ion-progress-bar>
+              <ion-toggle [(ngModel)]="state" (ionChange)="change()" slot="end"></ion-toggle>
             </ion-item>
           </ion-list>
         </ion-col>

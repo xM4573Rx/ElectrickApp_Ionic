@@ -75,9 +75,9 @@
           <ion-col style="text-align: center">
             <ion-list class="ion-no-padding; body;" style="margin-bottom: 6%">
               <ion-item>
-                <ion-icon name="logo-apple" slot="start" size="large" (click)="openTimerPage()"></ion-icon>
-                <ion-progress-bar value="0.5" (click)="openTimerPage()"></ion-progress-bar>
-                <ion-toggle slot="end"></ion-toggle>
+                <ion-icon name="outlet" slot="start" size="large" (click)="openTimerPage()"></ion-icon>
+                <ion-progress-bar [value]="progress" (click)="openTimerPage()"></ion-progress-bar>
+                <ion-toggle [(ngModel)]="state" (ionChange)="change()" slot="end"></ion-toggle>
               </ion-item>
             </ion-list>
           </ion-col>

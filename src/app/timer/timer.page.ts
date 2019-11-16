@@ -8,13 +8,26 @@ import * as firebase from 'firebase';
 })
 export class TimerPage implements OnInit {
 
-  users: string = 'users/+573016683176/';
+  users = 'users/+573016683176/';
 
   onDate: any = '';
   offDate: any = '';
+  Aenergy = 0;
+  Denergy = 0;
+  progress = 0;
+  state: boolean;
   refe = firebase.database().ref(this.users);
 
-  constructor() { }
+  constructor() {
+    this.refe.on('value', snap => {
+      this.Aenergy = snap.child('All').val().Energy;
+      this.Denergy = snap.child('Device').val().Energy;
+      this.progress = (this.Denergy / this.Aenergy);
+      this.state = snap.child('Device').val().State;
+      this.offDate = snap.child('Device').val().Off;
+      this.onDate = snap.child('Device').val().On;
+    });
+  }
 
   ngOnInit() { }
 
@@ -23,5 +36,9 @@ export class TimerPage implements OnInit {
       this.refe.child('Device').child('Off').set(item1);
       this.refe.child('Device').child('On').set(item2);
     }
+  }
+
+  change() {
+    this.refe.child('Device').child('State').set(this.state);
   }
 }
