@@ -13,8 +13,9 @@ export class TimerPage implements OnInit {
   onDate: any = '';
   offDate: any = '';
   Aenergy = 0;
-  Denergy = 0;
-  progress = 0;
+  Denergy = '';
+  Cdevice = 0.0;
+  Tcdevice = '';
   state: boolean;
   refe = firebase.database().ref(this.users);
 
@@ -22,10 +23,12 @@ export class TimerPage implements OnInit {
     this.refe.on('value', snap => {
       this.Aenergy = snap.child('All').val().Energy;
       this.Denergy = snap.child('Device').val().Energy;
-      this.progress = (this.Denergy / this.Aenergy);
       this.state = snap.child('Device').val().State;
       this.offDate = snap.child('Device').val().Off;
       this.onDate = snap.child('Device').val().On;
+      this.Cdevice = (parseFloat(this.Denergy) * 422.3);
+
+      this.Tcdevice = this.Cdevice.toFixed(2).toString() + ' $ ' + '(' + this.Denergy + ' kWh)';
     });
   }
 

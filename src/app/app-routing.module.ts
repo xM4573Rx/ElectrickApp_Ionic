@@ -7,6 +7,7 @@ const routes: Routes = [
   { path: 'home', loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)},
   { path: 'login', loadChildren: './login/login.module#LoginPageModule' },
   { path: 'timer', loadChildren: './timer/timer.module#TimerPageModule' },
+  { path: 'control', loadChildren: './control/control.module#ControlPageModule' },
   // { path: 'home', loadChildren: './home/home.module#HomePageModule' }
 ];
 

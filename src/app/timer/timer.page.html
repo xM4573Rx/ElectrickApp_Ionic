@@ -4,7 +4,7 @@
             <ion-back-button defaultHref="/">
             </ion-back-button>
         </ion-buttons>
-        <ion-title>ElectrickApp</ion-title>
+        <ion-title>Programar</ion-title>
       </ion-toolbar>
 </ion-header>
 
@@ -15,7 +15,9 @@
         <ion-list class="ion-no-padding; ion-no-margin">
             <ion-item  style="font-size: 6vw;">
               <ion-icon name="outlet" slot="start" size="large"></ion-icon>
-              <ion-progress-bar [value]="progress"></ion-progress-bar>
+              <ion-text class="ion-no-margin" slot="end" style="font-size: 6vw;">
+                {{ Tcdevice }}
+              </ion-text>
               <ion-toggle [(ngModel)]="state" (ionChange)="change()" slot="end"></ion-toggle>
             </ion-item>
           </ion-list>

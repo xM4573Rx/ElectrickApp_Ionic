@@ -1,0 +1,42 @@
+<ion-header>
+    <ion-toolbar color="primary">
+        <ion-buttons slot="start">
+            <ion-back-button defaultHref="/">
+            </ion-back-button>
+        </ion-buttons>
+        <ion-title>Controlar</ion-title>
+      </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-slides class="ion-no-padding" style="height: 100%;">
+  <ion-slide>
+    <ion-grid class="container">
+      <ion-row class="header; ion-no-padding">
+        <ion-col class="ion-no-padding" style="text-align: right">
+          <ion-text>
+            
+          </ion-text>
+        </ion-col>
+      </ion-row>
+      
+      <ion-row class="body">
+        <ion-col style="text-align: center">
+          <ion-list class="ion-no-padding; body;">
+            <ion-item>
+            <ion-icon name="outlet" class="ion-no-margin" size="large" slot="start" (click)="openTimerPage()"></ion-icon>
+              <ion-text class="ion-no-margin" style="font-size: 6vw" slot="end">{{ TTimeOnOff }}</ion-text>
+              <ion-datetime class="ion-no-margin" [(ngModel)]="TimeOnOff" displayFormat="MMM DD, YYYY HH:mm" style="font-size: 6vw" slot="end"></ion-datetime>
+              <ion-toggle [(ngModel)]="state" (ionChange)="change()" slot="end"></ion-toggle>
+            </ion-item>
+          </ion-list>
+        </ion-col>
+      </ion-row>
+
+      <ion-row class="footer">
+        
+      </ion-row>
+    </ion-grid>
+  </ion-slide>
+</ion-slides>
+</ion-content>

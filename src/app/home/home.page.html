@@ -9,47 +9,7 @@
 </ion-header>
 
 <ion-content>
-  <ion-slides pager class="ion-no-padding" style="height: 100%;">
-    <ion-slide>
-      <ion-grid class="container">
-        <ion-row class="header">
-          <ion-col style="text-align: right">
-            <ion-text>
-              {{ Apower }}
-            </ion-text>
-          </ion-col>
-        </ion-row>
-
-        <ion-row class="body">
-          <ion-col>
-            <circle-progress [percent]="100" [radius]="100" [outerStrokeWidth]="15" [innerStrokeWidth]="15"
-              [outerStrokeColor]="'#4caf50'" [innerStrokeColor]="'#e0e0e0'" [outerStrokeGradient]="false"
-              [outerStrokeGradientStopColor]="'#f44336'" [titleFontSize]="'4vw'" [title]="'50'" [showTitle]="false"
-              [subtitleFontSize]="'2vw'" [subtitle]="'kWh'" [showSubtitle]="false" [showUnits]="false"
-              [showImage]="false" [space]="-15" [renderOnClick]="false" [responsive]="true">
-            </circle-progress>
-          </ion-col>
-        </ion-row>
-
-        <ion-row class="footer">
-          <ion-col width-50 style="text-align: center">
-            {{ Aenergy }}
-          </ion-col>
-          <ion-col width-50 style="text-align: center">
-            {{ Tcenergy }}
-          </ion-col>
-        </ion-row>
-        <ion-row style="margin-bottom: 6%">
-          <ion-col width-50 style="text-align: center">
-            Consumo total
-          </ion-col>
-          <ion-col width-50 style="text-align: center">
-            Costo total
-          </ion-col>
-        </ion-row>
-      </ion-grid>
-    </ion-slide>
-
+  <ion-slides class="ion-no-padding" style="height: 100%;">
     <ion-slide style="overflow-y: scroll;">
       <ion-grid class="container">
         <ion-row class="header">
@@ -60,26 +20,39 @@
           </ion-col>
         </ion-row>
 
-        <ion-row class="header; ion-no-padding;">
+        <ion-row class="header; ion-no-padding;" style="font-size: 9vw; margin-top: 20%;">
           <ion-col>
-            <circle-progress [percent]="100" [radius]="100" [outerStrokeWidth]="15" [innerStrokeWidth]="15"
-              [outerStrokeColor]="'#4caf50'" [innerStrokeColor]="'#e0e0e0'" [outerStrokeGradient]="false"
-              [outerStrokeGradientStopColor]="'#f44336'" [titleFontSize]="'4vw'" [title]="'50'" [showTitle]="false"
-              [subtitleFontSize]="'2vw'" [subtitle]="'kWh'" [showSubtitle]="false" [showUnits]="false"
-              [showImage]="false" [space]="-15" [renderOnClick]="false" [responsive]="true">
-            </circle-progress>
+            <div>
+              {{ Tcenergy }}
+            </div>
+              <div>
+                  Costo total
+                </div>
+                <div style="margin-top: 9%; font-size: 6vw; text-align: left; padding-left: 5%;">
+                  Detalle
+                </div>
+          </ion-col>
+        </ion-row>
+        
+        <ion-row class="body">
+          <ion-col style="text-align: center">
+            <ion-list class="ion-no-padding; body;">
+              <ion-item>
+                <ion-icon class="ion-no-margin" name="outlet" slot="start" size="large"></ion-icon>
+              <ion-text slot="end" style="font-size: 6vw;">
+                {{ Tcdevice }}
+              </ion-text>
+              <ion-toggle [(ngModel)]="state" (ionChange)="change()" slot="end"></ion-toggle>
+              </ion-item>
+            </ion-list>
           </ion-col>
         </ion-row>
 
         <ion-row class="footer">
-          <ion-col style="text-align: center">
-            <ion-list class="ion-no-padding; body;" style="margin-bottom: 6%">
-              <ion-item>
-                <ion-icon name="outlet" slot="start" size="large" (click)="openTimerPage()"></ion-icon>
-                <ion-progress-bar [value]="progress" (click)="openTimerPage()"></ion-progress-bar>
-                <ion-toggle [(ngModel)]="state" (ionChange)="change()" slot="end"></ion-toggle>
-              </ion-item>
-            </ion-list>
+          <ion-col>
+            <ion-button expand="block" style="font-size: 6vw" (click)="openControlPage()">
+              Controlar
+            </ion-button>
           </ion-col>
         </ion-row>
       </ion-grid>
