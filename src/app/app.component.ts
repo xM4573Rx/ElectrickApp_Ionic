@@ -13,6 +13,7 @@ import * as firebase from 'firebase';
   styleUrls: ['app.component.scss']
 })
 export class AppComponent {
+
   constructor(
     private platform: Platform,
     private splashScreen: SplashScreen,

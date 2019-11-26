@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-toolbar color="primary">
+  <ion-toolbar class="ion-no-border; ion-no-margin; ion-no-padding">
     <ion-buttons slot="primary">
       <ion-button>
       </ion-button>
@@ -15,7 +15,7 @@
         <ion-row class="header">
           <ion-col style="text-align: right">
             <ion-text>
-              
+
             </ion-text>
           </ion-col>
         </ion-row>
@@ -25,24 +25,24 @@
             <div>
               {{ Tcenergy }}
             </div>
-              <div>
-                  Costo total
-                </div>
-                <div style="margin-top: 9%; font-size: 6vw; text-align: left; padding-left: 5%;">
-                  Detalle
-                </div>
+            <div>
+              Costo total
+            </div>
+            <div style="margin-top: 9%; font-size: 6vw; text-align: left; padding-left: 5%;">
+              Detalle
+            </div>
           </ion-col>
         </ion-row>
-        
+
         <ion-row class="body">
           <ion-col style="text-align: center">
             <ion-list class="ion-no-padding; body;">
               <ion-item>
                 <ion-icon class="ion-no-margin" name="outlet" slot="start" size="large"></ion-icon>
-              <ion-text slot="end" style="font-size: 6vw;">
-                {{ Tcdevice }}
-              </ion-text>
-              <ion-toggle [(ngModel)]="state" (ionChange)="change()" slot="end"></ion-toggle>
+                <ion-text slot="end" style="font-size: 6vw;">
+                  {{ Tcdevice }}
+                </ion-text>
+                <ion-toggle [(ngModel)]="state" (ionChange)="change()" slot="end"></ion-toggle>
               </ion-item>
             </ion-list>
           </ion-col>
@@ -50,7 +50,7 @@
 
         <ion-row class="footer">
           <ion-col>
-            <ion-button expand="block" style="font-size: 6vw" (click)="openControlPage()">
+            <ion-button expand="block" (click)="openControlPage()">
               Controlar
             </ion-button>
           </ion-col>
