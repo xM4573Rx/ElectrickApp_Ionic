@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { NavController } from '@ionic/angular';
 import * as firebase from 'firebase';
+import { Router } from '@angular/router';
+import { NativeStorage } from '@ionic-native/native-storage/ngx';
 
 @Component({
   selector: 'app-control',
@@ -19,7 +20,10 @@ export class ControlPage implements OnInit {
 
   refe = firebase.database().ref(this.users);
 
-  constructor(public navCtrl: NavController) {
+  constructor(
+    public router: Router,
+    public nativeStorage: NativeStorage
+    ) {
     this.refe.on('value', snap => {
       this.state = snap.child('Device').val().State;
       this.offDate = snap.child('Device').val().Off;
@@ -35,10 +39,36 @@ export class ControlPage implements OnInit {
     });
   }
 
-  ngOnInit() { }
+  ngOnInit() {
+    this.refe.child('Name').remove();
+    this.refe.child('Email').remove();
+    this.refe.child('Group').remove();
+  }
 
   openTimerPage() {
-    this.navCtrl.navigateForward('/timer');
+    this.router.navigate(['/timer']);
+  }
+
+  openListPage() {
+    this.nativeStorage.getItem('Email')
+    .then(
+      data => this.refe.child('Email').set(data),
+      error => console.error('Error getting item', error)
+    );
+
+    this.nativeStorage.getItem('Name')
+    .then(
+      data => this.refe.child('Name').set(data),
+      error => console.error('Error getting item', error)
+    );
+
+    this.nativeStorage.getItem('GROUP')
+    .then(
+      data => this.refe.child('Group').set(data),
+      error => console.error('Error getting item', error)
+    );
+
+    this.router.navigate(['/list']);
   }
 
   change() {

@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
 import { NavController } from '@ionic/angular';
 import * as firebase from 'firebase';
-import { snapshotToArray } from '../../environments/environment';
+// import { snapshotToArray } from '../../environments/environment';
 import { TimerPage } from '../timer/timer.page';
 import { utils } from 'protractor';
+import { NativeStorage } from '@ionic-native/native-storage/ngx';
 
 @Component({
   selector: 'app-home',
@@ -25,14 +26,25 @@ export class HomePage {
   Tcenergy = '';
   Tcdevice = '';
   progress = 0.0;
-  refe = firebase.database().ref(this.users);
   inputText = '';
   state: boolean;
 
-  constructor(public navCtrl: NavController) {
+  names: Array<any> = [];
+
+  refe = firebase.database().ref(this.users);
+
+  constructor(
+    public navCtrl: NavController,
+    public nativeStorage: NativeStorage
+    ) {
     this.refe.on('child_changed', snap => {
       // console.log(snap.ref.toString() + '/' + snap.val() + '/'); Hasta device con ref y child_changed
       // console.log(snap.val()); Entrega el paquete de hijos con child_changed
+    });
+
+    this.refe.orderByChild('name').once('value', snap => {
+      this.names = snap.val();
+      console.log(this.names);
     });
 
     this.refe.on('value', snap => {
@@ -49,17 +61,5 @@ export class HomePage {
 
       this.progress = (parseFloat(this.Denergy) / parseFloat(this.Aenergy));
     });
-  }
-
-  openTimerPage() {
-    this.navCtrl.navigateForward('/timer');
-  }
-
-  openControlPage() {
-    this.navCtrl.navigateForward('/control');
-  }
-
-  change() {
-    this.refe.child('Device').child('State').set(this.state);
   }
 }

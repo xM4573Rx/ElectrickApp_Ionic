@@ -1,0 +1,23 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/">
+      </ion-back-button>
+    </ion-buttons>
+    <ion-title>Elige un dispositivo</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-item>
+      <ion-label>Totalizador</ion-label>
+      <ion-img src="../../../../assets/images/sonoff.png" slot="end"></ion-img>
+    </ion-item>
+
+    <ion-item (click)="openNamePage()">
+      <ion-label>Nodo</ion-label>
+      <ion-img src="../../../../assets/images/etekcity_sin_fondo.png" slot="end"></ion-img>
+    </ion-item>
+  </ion-card>
+</ion-content>

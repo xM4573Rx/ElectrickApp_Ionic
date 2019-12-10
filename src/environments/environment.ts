@@ -16,7 +16,7 @@ export const environment = {
   }
 };
 
-export const snapshotToArray = snapshot => {
+/*export const snapshotToArray = snapshot => {
   let returnArray = [];
   snapshot.forEach(element => {
     let item = element.val();
@@ -24,7 +24,7 @@ export const snapshotToArray = snapshot => {
     returnArray.push(item);
   });
   return returnArray;
-};
+};*/
 
 /*
  * For easier debugging in development mode, you can import the following file

@@ -2,15 +2,15 @@ import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'tabs', pathMatch: 'full' },
-  // { path: 'register', loadChildren: () => import('./settings/tabs/tabs.module').then( m => m.RegisterPageModule)},
-  { path: 'tabs', loadChildren: () => import('./settings/tabs/tabs.module').then( m => m.TabsPageModule)},
-  { path: 'home', loadChildren: './home/home.module#HomePageModule' },
-  { path: 'login', loadChildren: './login/login.module#LoginPageModule' },
+  { path: '', redirectTo: 'register', pathMatch: 'full' },
+  { path: 'register', loadChildren: () => import('./register/register.module').then( m => m.RegisterPageModule)},
+  { path: 'tabs', loadChildren: './settings/tabs/tabs.module#TabsPageModule' },
+  { path: 'list', loadChildren: './settings/device/list/list.module#ListPageModule' },
   { path: 'timer', loadChildren: './timer/timer.module#TimerPageModule' },
-  { path: 'control', loadChildren: './control/control.module#ControlPageModule' },
-  { path: 'register', loadChildren: './register/register.module#RegisterPageModule' },
-  // { path: 'tabs', loadChildren: './settings/tabs/tabs.module#TabsPageModule' }
+  { path: 'groups', loadChildren: './groups/groups.module#GroupsPageModule' },
+  { path: 'new', loadChildren: './new/new.module#NewPageModule' },
+  { path: 'groups-two', loadChildren: './groups-two/groups-two.module#GroupsTwoPageModule' },
+  { path: 'name', loadChildren: './settings/device/name/name.module#NamePageModule' }
 ];
 
 @NgModule({

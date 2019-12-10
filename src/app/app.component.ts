@@ -6,6 +6,10 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 
 import { environment } from '../environments/environment';
 import * as firebase from 'firebase';
+import { AngularFireAuth } from '@angular/fire/auth';
+
+import { Observable, timer } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -14,19 +18,29 @@ import * as firebase from 'firebase';
 })
 export class AppComponent {
 
+  showSplash = true;
+
   constructor(
     private platform: Platform,
     private splashScreen: SplashScreen,
-    private statusBar: StatusBar
+    private statusBar: StatusBar,
+    private router: Router,
+    private afAuth: AngularFireAuth
   ) {
     this.initializeApp();
-    firebase.initializeApp(environment.firebaseConfig);
   }
 
   initializeApp() {
     this.platform.ready().then(() => {
-      this.statusBar.styleDefault();
+
+      if (this.platform.is('android')) {
+        this.statusBar.backgroundColorByHexString('#33000000');
+      }
+
+      this.router.navigate(['/register']);
       this.splashScreen.hide();
+
+      timer(3000).subscribe(() => this.showSplash = false);
     });
   }
 }

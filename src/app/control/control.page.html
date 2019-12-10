@@ -1,9 +1,5 @@
 <ion-header>
   <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-back-button defaultHref="/">
-      </ion-back-button>
-    </ion-buttons>
     <ion-title>Controlar</ion-title>
   </ion-toolbar>
 </ion-header>
@@ -40,7 +36,7 @@
         </ion-row>
       </ion-grid>
       <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-        <ion-fab-button>
+        <ion-fab-button (click)="openListPage()">
           <ion-icon name="add"></ion-icon>
         </ion-fab-button>
       </ion-fab>

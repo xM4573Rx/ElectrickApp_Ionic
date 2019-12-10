@@ -2,23 +2,22 @@
   <div class="container">
     <div class="header">
       <div class="title">
-        <img src="https://image.flaticon.com/icons/png/512/149/149071.png">
+        <img src="../../assets/images/icono.png">
       </div>
     </div>
     <div class="body">
-      <ion-list>
+      <ion-button icon-left expand="block" color="danger" (click)="googleLogin()">
+        <ion-icon slot="start" name="logo-google"></ion-icon>
+        Acceder con Google
+      </ion-button>
+
+      <ion-list lines="none">
         <ion-item>
-          <ion-icon slot="start" name="person"></ion-icon>
-          <ion-input placeholder="Nombre"></ion-input>
-        </ion-item>
-        <ion-item>
-          <ion-icon slot="start" name="call"></ion-icon>
-          <ion-input placeholder="Teléfono"></ion-input>
+          <ion-icon slot="start" color="white"></ion-icon>
+          <ion-icon slot="end" color="white"></ion-icon>
+          <ion-input placeholder="                   "></ion-input>
         </ion-item>
       </ion-list>
-      <ion-button expand="block">
-        Registrar
-      </ion-button>
     </div>
     <div class="footer">
       <a>ElectrikApp</a>

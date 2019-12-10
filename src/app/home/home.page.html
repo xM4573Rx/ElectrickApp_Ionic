@@ -37,12 +37,16 @@
         <ion-row class="body">
           <ion-col style="text-align: center">
             <ion-list class="ion-no-padding; body;">
-              <ion-item>
-                <ion-icon class="ion-no-margin" name="outlet" slot="start" size="large"></ion-icon>
-                <ion-text slot="end" style="font-size: 6vw;">
-                  {{ Tcdevice }}
-                </ion-text>
-                <ion-toggle [(ngModel)]="state" (ionChange)="change()" slot="end"></ion-toggle>
+              <ion-item *ngFor="let name of names">
+                  <ion-avatar slot="start">
+                    <ion-icon name="outlet" size="large"></ion-icon>
+                    </ion-avatar>
+                    <ion-label>
+                      <ion-text>
+                        <!-- {{ name.name }} -->
+                      </ion-text>
+                        <ion-progress-bar value="0.4"></ion-progress-bar>
+                    </ion-label>
               </ion-item>
             </ion-list>
           </ion-col>
@@ -50,9 +54,7 @@
 
         <ion-row class="footer">
           <ion-col>
-            <ion-button expand="block" (click)="openControlPage()">
-              Controlar
-            </ion-button>
+
           </ion-col>
         </ion-row>
       </ion-grid>
