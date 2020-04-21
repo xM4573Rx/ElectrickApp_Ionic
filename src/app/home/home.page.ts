@@ -4,7 +4,6 @@ import * as firebase from 'firebase';
 // import { snapshotToArray } from '../../environments/environment';
 import { TimerPage } from '../timer/timer.page';
 import { utils } from 'protractor';
-import { NativeStorage } from '@ionic-native/native-storage/ngx';
 
 @Component({
   selector: 'app-home',
@@ -14,6 +13,8 @@ import { NativeStorage } from '@ionic-native/native-storage/ngx';
 export class HomePage {
 
   users = 'users/+573016683176/';
+  path = 'Groups/';
+  path3 = 'StandBy/';
 
   items = '';
   Aenergy = '';
@@ -31,23 +32,46 @@ export class HomePage {
 
   names: Array<any> = [];
 
-  refe = firebase.database().ref(this.users);
+  refe = firebase.database().ref(this.path);
+  refe2 = firebase.database().ref(this.users);
+  refe3 = firebase.database().ref(this.path3);
 
   constructor(
-    public navCtrl: NavController,
-    public nativeStorage: NativeStorage
+    public navCtrl: NavController
     ) {
     this.refe.on('child_changed', snap => {
       // console.log(snap.ref.toString() + '/' + snap.val() + '/'); Hasta device con ref y child_changed
       // console.log(snap.val()); Entrega el paquete de hijos con child_changed
     });
 
-    this.refe.orderByChild('name').once('value', snap => {
-      this.names = snap.val();
-      console.log(this.names);
+    // this.refe.orderByKey().once('child_added').then(snap => {
+    //   snap.forEach(snap2 => {
+    //     if (snap2.val().name !== undefined) {
+    //       this.names.push(snap2.val().name);
+    //       console.log(this.names);
+    //     }
+    //   });
+    // });
+
+    // this.refe.orderByKey().on('child_added', snap => {
+    //   snap.forEach(snap2 => {
+    //     if (snap2.val() !== undefined) {
+    //       this.names.push(snap2.val());
+    //       console.log(this.names);
+    //     }
+    //   });
+    // });
+
+    this.refe.orderByKey().on('child_changed', snap => {
+      snap.forEach(snap2 => {
+        if (snap2.val() !== undefined) {
+          this.names.push(snap2.val());
+          console.log(this.names);
+        }
+      });
     });
 
-    this.refe.on('value', snap => {
+    this.refe2.on('value', snap => {
       this.Aenergy = snap.child('All').val().Energy + ' kWh';
       this.Apower = snap.child('All').val().Power + ' kWh';
       this.Denergy = snap.child('Device').val().Energy;

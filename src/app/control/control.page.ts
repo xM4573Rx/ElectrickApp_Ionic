@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import * as firebase from 'firebase';
 import { Router } from '@angular/router';
-import { NativeStorage } from '@ionic-native/native-storage/ngx';
+import { Storage } from '@ionic/storage';
 
 @Component({
   selector: 'app-control',
@@ -10,21 +10,36 @@ import { NativeStorage } from '@ionic-native/native-storage/ngx';
 })
 export class ControlPage implements OnInit {
 
-  users = 'users/+573016683176/';
+  path = 'Groups';
+  path2 = 'StandBy/';
+  path3 = 'users/+573016683176/';
 
   onDate: any = '';
   offDate: any = '';
   TimeOnOff: any = '';
   TTimeOnOff = '';
   state: boolean;
+  concat: any;
+  names: Array<any> = [];
 
-  refe = firebase.database().ref(this.users);
+  refe = firebase.database().ref(this.path);
+  refe3 = firebase.database().ref(this.path3);
+  refe2 = firebase.database().ref(this.path2);
 
   constructor(
     public router: Router,
-    public nativeStorage: NativeStorage
+    private storage: Storage
     ) {
-    this.refe.on('value', snap => {
+    this.refe.orderByKey().on('child_added', snap => {
+      snap.forEach(snap2 => {
+        if (snap2.val() !== undefined) {
+          this.names.push(snap2.val());
+          console.log(this.names);
+        }
+      });
+    });
+
+    this.refe3.on('value', snap => {
       this.state = snap.child('Device').val().State;
       this.offDate = snap.child('Device').val().Off;
       this.onDate = snap.child('Device').val().On;
@@ -39,39 +54,21 @@ export class ControlPage implements OnInit {
     });
   }
 
-  ngOnInit() {
-    this.refe.child('Name').remove();
-    this.refe.child('Email').remove();
-    this.refe.child('Group').remove();
-  }
+  ngOnInit() { }
 
   openTimerPage() {
     this.router.navigate(['/timer']);
   }
 
   openListPage() {
-    this.nativeStorage.getItem('Email')
-    .then(
-      data => this.refe.child('Email').set(data),
-      error => console.error('Error getting item', error)
-    );
-
-    this.nativeStorage.getItem('Name')
-    .then(
-      data => this.refe.child('Name').set(data),
-      error => console.error('Error getting item', error)
-    );
-
-    this.nativeStorage.getItem('GROUP')
-    .then(
-      data => this.refe.child('Group').set(data),
-      error => console.error('Error getting item', error)
-    );
+    this.storage.get('User').then((data) => {
+      this.refe2.child('Concat').set(data);
+    });
 
     this.router.navigate(['/list']);
   }
 
   change() {
-    this.refe.child('Device').child('State').set(this.state);
+    this.refe3.child('Device').child('State').set(this.state);
   }
 }

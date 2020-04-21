@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { auth } from 'firebase/app';
 
+import * as firebase from 'firebase';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
@@ -9,15 +11,19 @@ import { auth } from 'firebase/app';
 })
 export class LoginPage implements OnInit {
 
-  username: string = "";
-  password: string = "";
+  path = 'Jose/';
+
+  energystate: string;
+  red: string;
+
+  refe = firebase.database().ref(this.path);
 
   constructor() { }
 
   ngOnInit() {
-  }
-
-  login() {
-    const { username, password } = this;
+    this.refe.on('value', snap => {
+      this.energystate = snap.child('Energia').val();
+      this.red = snap.child('Red').val();
+    });
   }
 }

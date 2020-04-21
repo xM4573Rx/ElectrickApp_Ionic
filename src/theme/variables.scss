@@ -80,3 +80,19 @@ ion-header ion-toolbar {
   --background: #fff url('../assets/images/background_tonos.png') no-repeat center center / cover;
   color: white;
 }
+
+ion-content {
+  --background: #fff url('../assets/images/2.png') repeat;
+}
+
+ion-item {
+  --background: #fff url('../assets/images/2.png') repeat;
+}
+
+ion-tabs ion-tab-bar {
+  --background: #fff url('../assets/images/2.png') repeat;
+}
+
+// ion-list {
+//   --background: #fff url('../assets/images/2.png') repeat;
+// }

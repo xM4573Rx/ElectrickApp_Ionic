@@ -1,9 +1,33 @@
 <ion-header>
-  <ion-toolbar color="primary">
-      <ion-title>ElectrickApp</ion-title>
+  <ion-toolbar>
+      <ion-title>InfoRed</ion-title>
     </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  
+  <ion-grid style="font-size: 6vw;">
+    <ion-row style="margin-top: 15%;">
+      <ion-col style="text-align: center" size="6">
+        Conexión a la red eléctrica:
+      </ion-col>
+      <ion-col style="text-align: center;" width-25>
+        {{ energystate }}
+      </ion-col>
+    </ion-row>
+    <ion-row style="margin-top: 20%;">
+      <ion-col style="text-align: center;">
+        Dispositivo conectado a InfoRed:
+      </ion-col>
+      <ion-col style="text-align: center;">
+        {{ red }}
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-grid style="margin-top: 5%;">
+    <ion-row>
+      <ion-col style="justify-content: center; display: flex;">
+        <ion-img src="../../assets/images/infored.PNG" style="height: 65%; width: 65%;"></ion-img>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>

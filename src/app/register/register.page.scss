@@ -1,7 +1,8 @@
 ion-content {
     --offset-top: 0px;
     --offset-bottom: 0px;
-    --background: #FFF;
+    // --background: #fff url('../../assets/images/back.jpg') repeat center center / cover;
+    // --background: #fff url('../../assets/images/1.png') repeat;
     --color: #000;
     .container {
         display: flex;
@@ -14,14 +15,12 @@ ion-content {
             flex: 1;
             justify-content: center;
             text-align: center;
-            padding-top: 25%;
+            padding-top: 30%;
             .title {
                 img {
-                    height: 40%;
-                    width: 40%;
+                    height: 100%;
+                    width: 100%;
                 }
-            }
-            h3 {
             }
         }
         .body {
@@ -38,10 +37,6 @@ ion-content {
                     border: black;
                     margin-bottom: 10px;
                     font-size: 4vw;
-                    ion-icon {
-                    }
-                    ion-input {
-                    }
                 }
             }
         }

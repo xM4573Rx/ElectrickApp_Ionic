@@ -6,8 +6,8 @@ import { Observable } from 'rxjs';
 
 import { GooglePlus } from '@ionic-native/google-plus/ngx';
 import { Platform } from '@ionic/angular';
+import { Storage } from '@ionic/storage';
 import { Router } from '@angular/router';
-import { NativeStorage } from '@ionic-native/native-storage/ngx';
 
 @Component({
   selector: 'app-register',
@@ -28,7 +28,7 @@ export class RegisterPage implements OnInit {
     private gplus: GooglePlus,
     private platform: Platform,
     public router: Router,
-    public nativeStorage: NativeStorage
+    private storage: Storage
     ) {
 
     this.user = this.afAuth.authState;
@@ -81,6 +81,10 @@ export class RegisterPage implements OnInit {
         this.name = suc.user.displayName;
         this.refe.child('Email').set(this.email);
         this.refe.child('Name').set(this.name);
+        this.storage.remove('Email');
+        this.storage.remove('Name');
+        this.storage.remove('Group');
+        this.storage.remove('User');
       }).catch(ns => {
         alert('Error al iniciar sesión, verifique su conexión e inténtelo de nuevo. Error:' + ns);
       });
@@ -98,6 +102,10 @@ export class RegisterPage implements OnInit {
         this.name = suc.user.displayName;
         this.refe.child('Email').set(this.email);
         this.refe.child('Name').set(this.name);
+        this.storage.remove('Email');
+        this.storage.remove('Name');
+        this.storage.remove('Group');
+        this.storage.remove('User');
       }).catch(ns => {
         alert('Error al iniciar sesión, verifique su conexión e inténtelo de nuevo.');
       });

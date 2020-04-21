@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
 import * as firebase from 'firebase';
-import { NativeStorage } from '@ionic-native/native-storage/ngx';
 
 @Component({
   selector: 'app-tabs',
@@ -21,7 +20,6 @@ export class TabsPage implements OnInit {
   refe2 = firebase.database().ref(this.users2);
 
   constructor(
-    public nativeStorage: NativeStorage
   ) { }
 
   ngOnInit() { }

@@ -20,15 +20,34 @@
           </ion-col>
         </ion-row>
 
-        <ion-row class="header; ion-no-padding;" style="font-size: 9vw; margin-top: 20%;">
+        <ion-row class="header; ion-no-padding;" style="font-size: 9vw;">
           <ion-col>
-            <div>
+            <circle-progress 
+              [percent] = '100'
+              [maxPercent] = '100'
+              [showTitle] = 'true'
+              [showSubtitle] = 'true'
+              [showUnits] = 'false'
+              [space] = "-10"
+              [outerStrokeWidth] = '10'
+              [outerStrokeColor] = "'#97C34A'"
+              [innerStrokeColor] = "'#E7E8EA'"
+              [innerStrokeWidth] = '10'
+              [title] = "'Working'"
+              [titleFontSize] = '30'
+              [subtitle] = "'Correct'"
+              [subtitleFontSize] = '20'
+              [animateTitle] = 'false'
+              [renderOnClick] = 'false'
+              [responsive] = 'true'>
+            </circle-progress>
+            <!-- <div>
               {{ Tcenergy }}
             </div>
             <div>
               Costo total
-            </div>
-            <div style="margin-top: 9%; font-size: 6vw; text-align: left; padding-left: 5%;">
+            </div> -->
+            <div style="margin-top: 5%; font-size: 6vw; text-align: left; padding-left: 5%;">
               Detalle
             </div>
           </ion-col>
@@ -36,17 +55,18 @@
 
         <ion-row class="body">
           <ion-col style="text-align: center">
-            <ion-list class="ion-no-padding; body;">
+            <ion-list class="ion-no-padding; body;" mode='ios'>
               <ion-item *ngFor="let name of names">
-                  <ion-avatar slot="start">
-                    <ion-icon name="outlet" size="large"></ion-icon>
-                    </ion-avatar>
-                    <ion-label>
-                      <ion-text>
-                        <!-- {{ name.name }} -->
-                      </ion-text>
-                        <ion-progress-bar value="0.4"></ion-progress-bar>
-                    </ion-label>
+              <!-- <ion-item> -->
+                <ion-avatar slot="start">
+                  <ion-icon name="outlet" size="large"></ion-icon>
+                </ion-avatar>
+                <ion-label>
+                  <ion-text>
+                    {{ name.name }}
+                  </ion-text>
+                  <ion-progress-bar value="{{ name.value }}"></ion-progress-bar>
+                </ion-label>
               </ion-item>
             </ion-list>
           </ion-col>

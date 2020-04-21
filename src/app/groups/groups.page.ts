@@ -1,8 +1,8 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { NavController, Platform } from '@ionic/angular';
+import { Component, OnInit } from '@angular/core';
+import { Platform } from '@ionic/angular';
+import { Storage } from '@ionic/storage';
 import { Router, ActivatedRoute } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
-import { NativeStorage } from '@ionic-native/native-storage/ngx';
 
 import * as firebase from 'firebase';
 
@@ -21,12 +21,11 @@ export class GroupsPage implements OnInit {
   refe = firebase.database().ref(this.users);
 
   constructor(
-    public navCtrl: NavController,
     public platform: Platform,
     public router: Router,
     public activatedRoute: ActivatedRoute,
     private http: HttpClient,
-    public nativeStorage: NativeStorage
+    private storage: Storage
   ) {
     this.platform.backButton.subscribe(async () => {
       if (this.router.isActive('/groups', true) && this.router.url === '/groups') {
@@ -41,42 +40,49 @@ export class GroupsPage implements OnInit {
       this.email = snap.child('Email').val();
       this.name = snap.child('Name').val();
 
-      this.nativeStorage.setItem('Email', this.email)
-      .then(
-        () => console.error('Stored'),
-        error => console.error('Error storing item', error)
-      );
+      if ((this.email != null) && (this.name != null)) {
+        this.storage.get('Email').then((data) => {
+          if (data != null) {
+            data = this.email;
+            this.storage.set('Email', data);
+          } else {
+            let variable: any;
+            variable = this.email;
+            this.storage.set('Email', variable);
+          }
+        });
 
-      this.nativeStorage.setItem('Name', this.name)
-      .then(
-        () => console.error('Stored'),
-        error => console.error('Error storing item', error)
-      );
+        this.storage.get('Name').then((data) => {
+          if (data != null) {
+            data = this.name;
+            this.storage.set('Name', data);
+          } else {
+            let variable: any;
+            variable = this.name;
+            this.storage.set('Name', variable);
+          }
+        });
 
-      this.refe.child('Name').remove();
-      this.refe.child('Email').remove();
+        this.refe.child('Name').remove();
+        this.refe.child('Email').remove();
+      }
     });
 
-    this.nativeStorage.getItem('GROUP')
-    .then(
-      // data => this.flag = 1,
-      data => this.router.navigate(['/groups-two']),
-      error => console.error(error)
-    );
+    this.storage.get('Group').then((data) => {
+      if (data != null) {
+        this.router.navigate(['/groups-two']);
+      }
+    });
   }
 
   openNewPage() {
-    this.nativeStorage.getItem('Email')
-    .then(
-      data => this.refe.child('Email').set(data),
-      error => console.error(error)
-    );
+    this.storage.get('Email').then((data) => {
+      this.refe.child('Email').set(data);
+    });
 
-    this.nativeStorage.getItem('Name')
-    .then(
-      data => this.refe.child('Name').set(data),
-      error => console.error(error)
-    );
+    this.storage.get('Name').then((data) => {
+      this.refe.child('Name').set(data);
+    });
 
     this.router.navigate(['/new']);
   }

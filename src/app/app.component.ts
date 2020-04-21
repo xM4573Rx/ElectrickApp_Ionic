@@ -40,7 +40,7 @@ export class AppComponent {
       this.router.navigate(['/register']);
       this.splashScreen.hide();
 
-      timer(3000).subscribe(() => this.showSplash = false);
+      timer(2500).subscribe(() => this.showSplash = false);
     });
   }
 }

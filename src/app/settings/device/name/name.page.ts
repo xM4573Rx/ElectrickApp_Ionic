@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { NativeStorage } from '@ionic-native/native-storage/ngx';
+import { Storage } from '@ionic/storage';
 
 import * as firebase from 'firebase';
 
@@ -12,6 +12,7 @@ import * as firebase from 'firebase';
 export class NamePage implements OnInit {
 
   path = 'Groups/';
+  path2 = 'StandBy/';
 
   valor: string;
   name: any;
@@ -22,66 +23,85 @@ export class NamePage implements OnInit {
   i: any = 0;
 
   refe = firebase.database().ref(this.path);
+  refe2 = firebase.database().ref(this.path2);
 
   constructor(
     public router: Router,
-    public nativeStorage: NativeStorage
+    private storage: Storage
   ) {
-    this.nativeStorage.getItem('Name')
-    .then(
-      data => this.name = data,
-      error => console.error('Error getting item', error)
-    );
+    // this.storage.get('User')
+    // .then(
+    //   data => this.refe2.child('Concat').set(data),
+    //   error => console.error(error)
+    // );
+    // this.storage.get('Name')
+    // .then(
+    //   data => this.name = data,
+    //   error => console.error('Error getting item', error)
+    // );
 
-    this.nativeStorage.getItem('GROUP')
-    .then(
-      data => this.group = data,
-      error => console.error('Error getting item', error)
-    );
+    // this.storage.get('GROUP')
+    // .then(
+    //   data => this.group = data,
+    //   error => console.error('Error getting item', error)
+    // );
 
-    this.nativeStorage.getItem('I')
-    .then(
-      data => this.i = data,
-      error => console.error('Error getting item', error)
-    );
-
-    this.concat = this.group + '_' + this.name;
+    // this.storage.get('I')
+    // .then(
+    //   data => this.i = data,
+    //   error => console.error('Error getting item', error)
+    // );
   }
 
   ngOnInit() {
     this.refe.once('value', snap => {
-      this.name = snap.child('Name').val();
-      this.group = snap.child('Group').val();
+      this.concat = snap.child('Concat').val();
 
-      this.nativeStorage.setItem('Name', this.name)
-      .then(
-        () => console.error('Stored'),
-        error => console.error('Error storing item', error)
-      );
+      if (this.concat != null) {
+        this.storage.get('Concat').then((data) => {
+          if (data != null) {
+            data = this.concat;
+            this.storage.set('Concat', data);
+          } else {
+            let variable: any;
+            variable = this.concat;
+            this.storage.set('Concat', variable);
+          }
+        });
 
-      this.nativeStorage.setItem('GROUP', this.group)
-      .then(
-        () => console.error('Stored'),
-        error => console.error('Error storing item', error)
-      );
-
-      this.concat = this.group + '/' + this.name;
-
-      this.refe.child('Name').remove();
-      this.refe.child('Email').remove();
-      this.refe.child('Group').remove();
+        this.refe.child('Concat').remove();
+      }
     });
   }
 
   openHomePage() {
-    this.i = this.i + 1;
-    this.device = 'Device' + this.i;
-    this.refe.child(this.concat).child(this.device).child('name').set(this.valor);
-    this.nativeStorage.setItem('I', this.i)
-    .then(
-      () => console.error('Stored'),
-      error => console.error('Error storing item', error)
-    );
+    this.storage.get('User').then((data) => {
+      this.refe2.child('Concat').set(data);
+    });
+
+    this.refe2.once('value', snap => {
+      this.concat = snap.child('Concat').val();
+
+      this.storage.get('Count').then((data) => {
+        data = data + 1;
+        this.device = 'Device' + data;
+
+        this.refe.child(this.concat).child(this.device).child('name').set(this.valor);
+
+        this.storage.get('Count').then((val) => {
+          if (val != null) {
+            val = data;
+            this.storage.set('Count', val);
+          } else {
+            let variable: any;
+            variable = data;
+            this.storage.set('Count', variable);
+          }
+        });
+      });
+      this.refe2.child('Concat').remove();
+    });
+
     this.router.navigate(['/tabs/tabs']);
   }
 }
